@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.kec.gobooks.login.LoginActivity;
 import com.kec.gobooks.main.MainActivity;
 import com.kec.gobooks.R;
 
@@ -69,9 +70,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void openMainActivity() {
 
-        Log.e(TAG,"called After");
-
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
 

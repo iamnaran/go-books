@@ -27,6 +27,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
         this.numbersList = listOfNumbers;
 
     }
+    
 
     // Return Our View Which we want to create
 
@@ -50,11 +51,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
         String counterValue = numbersList.get(position);
         vhBooks.counterTextView.setText(counterValue);
 
-
-
-
     }
-
 
     // Size of List
     @Override
