@@ -47,7 +47,6 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
 
         // plotting recyclerview
         Book bookItem = bookList.get(position);
-
         VHBooks vhBooks = (VHBooks) holder;
         vhBooks.bookName.setText(bookItem.getBookName());
         vhBooks.bookAuthorName.setText(bookItem.getBookAuthorName());

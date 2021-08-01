@@ -7,10 +7,10 @@ import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface GithubService {
+public interface LoginApiService {
 
     @POST("login")
-    Call<Login> listRepos(@Field("email")String emailAddress, @Field(("password")String password));
+    Call<Login> requestLogin(@Field("email") String emailAddress, @Field("password") String password);
 
 
 
