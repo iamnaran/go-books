@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.kec.gobooks.R;
 import com.kec.gobooks.helpers.GoBookActivity;
 import com.kec.gobooks.main.adapter.BooksRecyclerViewAdapter;
+import com.kec.gobooks.models.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,8 @@ public class MainActivity extends GoBookActivity {
 
     private RecyclerView recyclerView;
 
-    private List<String> listOfNumbers = new ArrayList<>();
+    private List<Book> listOfBooks = new ArrayList<>();
+
 
     private BooksRecyclerViewAdapter booksRecyclerViewAdapter;
 
@@ -32,18 +34,24 @@ public class MainActivity extends GoBookActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listOfNumbers.add(" I am Zero Position");
-
-        for (int i = 0; i < 10; i++) {
-            listOfNumbers.add(String.valueOf(i));
-        }
-
-        listOfNumbers.add(" I am at Last Position");
-
-
+        doAddListOfBooks();
         initViews();
         initListener();
         setUpRecyclerView();
+
+    }
+
+    private void doAddListOfBooks() {
+
+        Book book = new Book();
+        book.setBookName("Name");
+        book.setBookAuthorName("Author Name");
+        book.setPrice(1200);
+
+        listOfBooks.add(book);
+        listOfBooks.add(book);
+        listOfBooks.add(book);
+
 
     }
 
@@ -72,7 +80,7 @@ public class MainActivity extends GoBookActivity {
                         false);
         recyclerView.setLayoutManager(layoutManager);
 
-        booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(listOfNumbers);
+        booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(listOfBooks);
 
         recyclerView.setAdapter(booksRecyclerViewAdapter);
 

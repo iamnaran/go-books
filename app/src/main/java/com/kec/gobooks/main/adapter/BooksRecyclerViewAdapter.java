@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kec.gobooks.R;
+import com.kec.gobooks.models.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,12 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
     private final String TAG = BooksRecyclerViewAdapter.this.getClass().getSimpleName();
 
 
-    private List<String> numbersList = new ArrayList<>();
+    private List<Book> bookList = new ArrayList<>();
 
 
-    public BooksRecyclerViewAdapter(List<String> listOfNumbers) {
+    public BooksRecyclerViewAdapter(List<Book> books) {
 
-        this.numbersList = listOfNumbers;
+        this.bookList = books;
 
     }
     
@@ -45,30 +46,36 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         // plotting recyclerview
+        Book bookItem = bookList.get(position);
 
         VHBooks vhBooks = (VHBooks) holder;
+        vhBooks.bookName.setText(bookItem.getBookName());
+        vhBooks.bookAuthorName.setText(bookItem.getBookAuthorName());
 
-        String counterValue = numbersList.get(position);
-        vhBooks.counterTextView.setText(counterValue);
+
 
     }
 
     // Size of List
     @Override
     public int getItemCount() {
-        return numbersList.size();
+
+
+        return bookList.size();
     }
 
 
     private class VHBooks extends RecyclerView.ViewHolder {
 
 
-        private TextView counterTextView;
+        private TextView bookName;
+        private TextView bookAuthorName;
 
         public VHBooks(@NonNull View itemView) {
             super(itemView);
 
-            counterTextView = itemView.findViewById(R.id.tv_counter);
+            bookName = itemView.findViewById(R.id.tv_book_name);
+            bookAuthorName = itemView.findViewById(R.id.tv_book_author_name);
         }
     }
 
