@@ -51,7 +51,7 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
 
         loginButton.setOnClickListener(this);
 
-        loginController =
+        loginController = new LoginController(this);
 
     }
 
@@ -72,7 +72,7 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
                 }
                 if (Patterns.EMAIL_ADDRESS.matcher(editTextEmailValue).matches()) {
 
-                    doLoginApiRequestWork();
+                    loginController.doLoginWork(editTextEmailValue,editTextPasswordValue);
 
 
                 } else {
@@ -86,12 +86,6 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
         }
     }
 
-    private void doLoginApiRequestWork() {
-
-
-
-
-    }
 
 
     @Override
@@ -99,10 +93,15 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
 
         AppToast.showToast(message);
 
+
     }
 
     @Override
     public void onLoginFailed() {
+
+
+        AppToast.showToast("Failed");
+
 
     }
 }

@@ -22,8 +22,8 @@ public class LoginController {
     private WeakReference<LoginContract> loginContractWeakReference;
 
 
-    public LoginController(WeakReference<LoginContract> loginContractWeakReference) {
-        this.loginContractWeakReference = loginContractWeakReference;
+    public LoginController(LoginContract loginContractWeakReference) {
+        this.loginContractWeakReference = new WeakReference<>(loginContractWeakReference);
     }
 
     private LoginController.LoginContract getViewContract() throws NullPointerException {
@@ -36,19 +36,18 @@ public class LoginController {
     }
 
 
-
-    private void doLoginWork(String email, String password){
+    public void doLoginWork(String email, String password) {
 
         LoginApiService loginApiService = ApiClient.getClient().create(LoginApiService.class);
 
-        loginApiService.requestLoginFromServer(email,password).enqueue(new Callback<Login>() {
+        loginApiService.requestLoginFromServer(email, password).enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
 
                 // do success work
-                if (getViewContract() != null){
+                if (getViewContract() != null) {
 
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         getViewContract().onLoginResponseSuccess("Login Success");
                     }
                 }
@@ -59,7 +58,7 @@ public class LoginController {
             public void onFailure(Call<Login> call, Throwable t) {
 
                 // do failure work
-                if (getViewContract() != null){
+                if (getViewContract() != null) {
                     getViewContract().onLoginFailed();
 
                 }
@@ -69,11 +68,8 @@ public class LoginController {
         });
 
 
-
     }
 
-
-    // communicating with views
 
     public interface LoginContract {
 
