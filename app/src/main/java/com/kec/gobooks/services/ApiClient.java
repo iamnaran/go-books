@@ -17,16 +17,19 @@ public class ApiClient {
 
     public static Retrofit getClient() {
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
+        // to strictly follow json syntax
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
+        // adding time out for request
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient httpClient = builder
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS).build();
 
+        // returning retrofit object with their credentials
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
