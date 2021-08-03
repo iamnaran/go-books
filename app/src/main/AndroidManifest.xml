@@ -12,18 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBooks">
-        <activity android:name=".signup.SignUpActivity" />
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".ui.main.signup.SignUpActivity" />
+        <activity
+            android:name=".ui.main.login.LoginActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+
         <activity android:name=".TestActivity" />
 
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".ui.main.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity" />
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

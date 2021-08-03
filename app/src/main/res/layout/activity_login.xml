@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".ui.main.login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,6 +52,14 @@
                 android:padding="@dimen/et_padding"/>
 
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_height="wrap_content" />
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
@@ -69,6 +77,7 @@
 
 
         <TextView
+            android:id="@+id/tv_create_new_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"

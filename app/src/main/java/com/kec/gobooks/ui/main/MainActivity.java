@@ -1,16 +1,13 @@
-package com.kec.gobooks.main;
+package com.kec.gobooks.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.kec.gobooks.R;
 import com.kec.gobooks.helpers.GoBookActivity;
-import com.kec.gobooks.main.adapter.BooksRecyclerViewAdapter;
+import com.kec.gobooks.ui.main.adapter.BooksRecyclerViewAdapter;
 import com.kec.gobooks.models.Book;
 
 import java.util.ArrayList;
@@ -74,10 +71,8 @@ public class MainActivity extends GoBookActivity {
         // RecyclerView Adapter
         // List of Items
 
-        LinearLayoutManager layoutManager =
-                new LinearLayoutManager(MainActivity.this,
-                        RecyclerView.VERTICAL,
-                        false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false);
+
         recyclerView.setLayoutManager(layoutManager);
 
         booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(listOfBooks);

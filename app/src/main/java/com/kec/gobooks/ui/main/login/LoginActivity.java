@@ -1,29 +1,33 @@
-package com.kec.gobooks.login;
+package com.kec.gobooks.ui.main.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.kec.gobooks.R;
-import com.kec.gobooks.controller.LoginController;
+import com.kec.gobooks.models.Login;
+import com.kec.gobooks.ui.main.MainActivity;
+import com.kec.gobooks.ui.main.login.controller.LoginContract;
+import com.kec.gobooks.ui.main.login.controller.LoginController;
 import com.kec.gobooks.helpers.GoBookActivity;
-import com.kec.gobooks.services.ApiClient;
-import com.kec.gobooks.services.LoginApiService;
+import com.kec.gobooks.ui.main.splash.SplashActivity;
 import com.kec.gobooks.utils.AppToast;
+import com.kec.gobooks.utils.PreferenceHelper;
 
-import retrofit2.Retrofit;
-
-public class LoginActivity extends GoBookActivity implements View.OnClickListener , LoginController.LoginContract {
+public class LoginActivity extends GoBookActivity implements View.OnClickListener, LoginContract {
 
 
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
+    private TextView createAccountBtn;
+
+    private ProgressBar progressBar;
 
     private LoginController loginController;
 
@@ -43,6 +47,8 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
         emailEditText = findViewById(R.id.et_email);
         passwordEditText = findViewById(R.id.et_password);
         loginButton = findViewById(R.id.btn_login);
+        progressBar = findViewById(R.id.progress_bar);
+        createAccountBtn = findViewById(R.id.tv_create_new_account);
 
     }
 
@@ -50,6 +56,8 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
     public void initListener() {
 
         loginButton.setOnClickListener(this);
+        createAccountBtn.setOnClickListener(this);
+
 
         loginController = new LoginController(this);
 
@@ -72,10 +80,11 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
                 }
                 if (Patterns.EMAIL_ADDRESS.matcher(editTextEmailValue).matches()) {
 
-                    loginController.doLoginWork(editTextEmailValue,editTextPasswordValue);
-
+                    showProgressBar();
+                    loginController.doLoginWork(editTextEmailValue, editTextPasswordValue);
 
                 } else {
+
                     AppToast.showToast("Valid Email Address required");
                     emailEditText.setError("Valid Email is Required");
 
@@ -83,25 +92,58 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
 
 
                 break;
+
+
+            case R.id.tv_create_new_account:
+
+                // tv sign up called
+
+
+                break;
         }
     }
 
 
-
     @Override
-    public void onLoginResponseSuccess(String message) {
+    public void onLoginResponseSuccess(Login login) {
 
-        AppToast.showToast(message);
+        PreferenceHelper.saveLoginResponse(login);
+        PreferenceHelper.setUserLoggedIn();
+        hideProgressBar();
+        doAfterLoginSuccessWork();
 
 
+    }
+
+    private void doAfterLoginSuccessWork() {
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onLoginFailed() {
 
-
-        AppToast.showToast("Failed");
+        hideProgressBar();
 
 
     }
+
+    private void showProgressBar() {
+
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    private void hideProgressBar() {
+
+        if (progressBar != null) {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
 }

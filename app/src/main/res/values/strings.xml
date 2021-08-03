@@ -2,5 +2,9 @@
     <string name="app_name">Hello Books</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+
+
     <string name="create_a_new_account">Create a new Account</string>
+
+
 </resources>

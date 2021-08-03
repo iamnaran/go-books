@@ -1,9 +1,7 @@
-package com.kec.gobooks.controller;
+package com.kec.gobooks.ui.main.login.controller;
 
 
 // A controller class to handle programming logical operation & api request for now
-
-import android.view.View;
 
 import com.kec.gobooks.models.Login;
 import com.kec.gobooks.services.ApiClient;
@@ -14,19 +12,17 @@ import java.lang.ref.WeakReference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class LoginController {
 
 
     private WeakReference<LoginContract> loginContractWeakReference;
 
-
     public LoginController(LoginContract loginContractWeakReference) {
         this.loginContractWeakReference = new WeakReference<>(loginContractWeakReference);
     }
 
-    private LoginController.LoginContract getViewContract() throws NullPointerException {
+    private LoginContract getViewContract() throws NullPointerException {
 
         if (loginContractWeakReference != null) {
             return loginContractWeakReference.get();
@@ -35,7 +31,7 @@ public class LoginController {
 
     }
 
-
+    //
     public void doLoginWork(String email, String password) {
 
         LoginApiService loginApiService = ApiClient.getClient().create(LoginApiService.class);
@@ -48,7 +44,9 @@ public class LoginController {
                 if (getViewContract() != null) {
 
                     if (response.isSuccessful()) {
-                        getViewContract().onLoginResponseSuccess("Login Success");
+                        getViewContract().onLoginResponseSuccess(response.body());
+                    }else {
+                        getViewContract().onLoginFailed();
                     }
                 }
 
@@ -67,15 +65,6 @@ public class LoginController {
             }
         });
 
-
-    }
-
-
-    public interface LoginContract {
-
-        void onLoginResponseSuccess(String message);
-
-        void onLoginFailed();
 
     }
 

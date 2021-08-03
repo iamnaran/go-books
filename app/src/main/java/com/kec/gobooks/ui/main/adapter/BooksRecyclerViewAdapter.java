@@ -1,4 +1,4 @@
-package com.kec.gobooks.main.adapter;
+package com.kec.gobooks.ui.main.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
