@@ -1,8 +1,5 @@
 package com.kec.gobooks.ui.auth.controller;
 
-
-// A controller class to handle programming logical operation & api request for now
-
 import com.kec.gobooks.models.Login;
 import com.kec.gobooks.services.ApiClient;
 import com.kec.gobooks.services.LoginApiService;
@@ -13,9 +10,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// A controller class to handle programming logical operation & api request for now
+
 public class LoginController {
 
 
+
+    /*
+      About WeakReference
+      Suppose that the garbage collector determines at a certain point in time
+      that an object is weakly reachable. At that time it will atomically clear all weak references to
+      that object and all weak references to any other weakly-reachable objects
+      from which that object is reachable through a chain of strong and soft
+      references.
+      */
 
     private WeakReference<LoginContract> loginContractWeakReference;
 
