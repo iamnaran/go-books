@@ -1,4 +1,4 @@
-package com.kec.gobooks.ui.auth.controller;
+package com.kec.gobooks.ui.login.controller;
 
 import com.kec.gobooks.models.Login;
 
