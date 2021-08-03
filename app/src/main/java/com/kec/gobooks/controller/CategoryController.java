@@ -12,7 +12,9 @@ public class CategoryController {
       that an object is weakly reachable. At that time it will atomically clear all weak references to
       that object and all weak references to any other weakly-reachable objects
       from which that object is reachable through a chain of strong and soft
-      references.*/
+      references.
+
+      */
 
     private WeakReference<ViewContract> viewContractWeakReference;
 
@@ -20,6 +22,7 @@ public class CategoryController {
 
         this.viewContractWeakReference = new WeakReference<>(viewContract);
     }
+
 
 
     public interface ViewContract {

@@ -1,4 +1,4 @@
-package com.kec.gobooks.ui.main.signup;
+package com.kec.gobooks.ui.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 

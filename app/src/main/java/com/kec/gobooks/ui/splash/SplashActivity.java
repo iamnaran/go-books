@@ -1,4 +1,4 @@
-package com.kec.gobooks.ui.main.splash;
+package com.kec.gobooks.ui.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.kec.gobooks.ui.main.MainActivity;
-import com.kec.gobooks.ui.main.login.LoginActivity;
+import com.kec.gobooks.ui.auth.LoginActivity;
 import com.kec.gobooks.R;
 import com.kec.gobooks.utils.PreferenceHelper;
 

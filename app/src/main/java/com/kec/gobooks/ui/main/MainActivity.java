@@ -22,7 +22,6 @@ public class MainActivity extends GoBookActivity {
 
     private List<Book> listOfBooks = new ArrayList<>();
 
-
     private BooksRecyclerViewAdapter booksRecyclerViewAdapter;
 
 

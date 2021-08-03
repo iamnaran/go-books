@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoBooks">
-        <activity android:name=".ui.main.signup.SignUpActivity" />
+        <activity android:name=".ui.signup.SignUpActivity" />
         <activity
-            android:name=".ui.main.login.LoginActivity"
+            android:name=".ui.auth.LoginActivity"
             android:windowSoftInputMode="stateHidden" />
 
 
         <activity android:name=".TestActivity" />
 
-        <activity android:name=".ui.main.splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

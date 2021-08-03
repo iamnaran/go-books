@@ -1,4 +1,4 @@
-package com.kec.gobooks.ui.main.login.controller;
+package com.kec.gobooks.ui.auth.controller;
 
 
 // A controller class to handle programming logical operation & api request for now
@@ -14,6 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginController {
+
 
 
     private WeakReference<LoginContract> loginContractWeakReference;

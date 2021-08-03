@@ -1,4 +1,4 @@
-package com.kec.gobooks.ui.main.login;
+package com.kec.gobooks.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,9 @@ import android.widget.TextView;
 import com.kec.gobooks.R;
 import com.kec.gobooks.models.Login;
 import com.kec.gobooks.ui.main.MainActivity;
-import com.kec.gobooks.ui.main.login.controller.LoginContract;
-import com.kec.gobooks.ui.main.login.controller.LoginController;
+import com.kec.gobooks.ui.auth.controller.LoginContract;
+import com.kec.gobooks.ui.auth.controller.LoginController;
 import com.kec.gobooks.helpers.GoBookActivity;
-import com.kec.gobooks.ui.main.splash.SplashActivity;
 import com.kec.gobooks.utils.AppToast;
 import com.kec.gobooks.utils.PreferenceHelper;
 
@@ -26,7 +25,6 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
     private EditText passwordEditText;
     private Button loginButton;
     private TextView createAccountBtn;
-
     private ProgressBar progressBar;
 
     private LoginController loginController;
@@ -126,7 +124,6 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
     public void onLoginFailed() {
 
         hideProgressBar();
-
 
     }
 
