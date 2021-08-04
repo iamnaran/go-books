@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Login {
 
+    // Auto generate model from jsontopojo Web Tool.
+    // holds data
+
     @SerializedName("status")
     @Expose
     private Boolean status;

@@ -10,9 +10,8 @@ import static com.kec.gobooks.MyApplication.getSharedPreferences;
 
 public class PreferenceHelper {
 
-
+    // converted to String before saving
     public static void saveLoginResponse(Login loginResponse){
-        // converted to String
         String responseOfLogin = new GsonBuilder().create().toJson(loginResponse);
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(AppConstants.LOGIN_RESPONSE,responseOfLogin);
@@ -21,22 +20,16 @@ public class PreferenceHelper {
     }
 
 
-
+    // return login converted to Object from string value saved in shared preference
     public static Login getLoginResponse(){
-        // converted to Object
-
         String loginResponse  = getSharedPreferences().getString(AppConstants.LOGIN_RESPONSE,null);
-
         Login login = new GsonBuilder().create().fromJson(loginResponse,Login.class);
-
         return login;
 
     }
 
 
     // set user status of login in shared preference
-
-
     public static void setUserLoggedIn(){
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putBoolean(AppConstants.USER_LOGGED_IN_STATUS,true);
@@ -46,11 +39,8 @@ public class PreferenceHelper {
 
 
 
-    // set user status of login in shared preference
-
-
+    // return is user logged in value
     public static boolean isUserLoggedIn(){
-        // converted to Object
 
         return getSharedPreferences().getBoolean(AppConstants.USER_LOGGED_IN_STATUS,false);
 

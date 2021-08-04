@@ -21,7 +21,7 @@ import com.kec.gobooks.utils.PreferenceHelper;
 public class LoginActivity extends GoBookActivity implements View.OnClickListener, LoginContract {
 
 
-    // view classes
+    // all elements from ui view
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -76,6 +76,8 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.btn_login:
 
+                // do validation work
+
                 String editTextEmailValue = emailEditText.getText().toString();
                 String editTextPasswordValue = passwordEditText.getText().toString();
 
@@ -87,11 +89,13 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
                 }
                 if (Patterns.EMAIL_ADDRESS.matcher(editTextEmailValue).matches()) {
 
+                    // called when all above validation is correct.
+
                     showProgressBar();
                     loginController.doLoginWork(editTextEmailValue, editTextPasswordValue);
 
                 } else {
-
+                    // called when all above validation is incorrect.
                     AppToast.showToast("Valid Email Address required");
                     emailEditText.setError("Valid Email is Required");
 
