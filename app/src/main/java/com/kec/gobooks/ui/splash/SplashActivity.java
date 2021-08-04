@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.kec.gobooks.ui.main.MainActivity;
+import com.kec.gobooks.ui.home.HomeActivity;
 import com.kec.gobooks.ui.login.LoginActivity;
 import com.kec.gobooks.R;
 import com.kec.gobooks.utils.PreferenceHelper;
@@ -77,7 +77,7 @@ public class SplashActivity extends AppCompatActivity {
         if (PreferenceHelper.isUserLoggedIn()){
 
             // do user already logged in work
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
 

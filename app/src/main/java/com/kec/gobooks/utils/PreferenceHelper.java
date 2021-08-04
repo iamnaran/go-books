@@ -16,7 +16,6 @@ public class PreferenceHelper {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(AppConstants.LOGIN_RESPONSE,responseOfLogin);
         editor.apply();
-
     }
 
 

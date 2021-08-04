@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.kec.gobooks.R;
 import com.kec.gobooks.models.Login;
-import com.kec.gobooks.ui.main.MainActivity;
+import com.kec.gobooks.ui.home.HomeActivity;
 import com.kec.gobooks.ui.login.controller.LoginContract;
 import com.kec.gobooks.ui.login.controller.LoginController;
 import com.kec.gobooks.helpers.GoBookActivity;
@@ -131,7 +131,7 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
     private void doAfterLoginSuccessWork() {
         // opening Activity on Login Success
 
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }

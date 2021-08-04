@@ -3,6 +3,8 @@ package com.kec.gobooks.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 public class Login {
 
     // Auto generate model from jsontopojo Web Tool.

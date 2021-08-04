@@ -1,7 +1,9 @@
 package com.kec.gobooks.ui.main;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 
@@ -71,6 +73,8 @@ public class MainActivity extends GoBookActivity {
         // List of Items
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false);
+
+//        StaggeredGridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,)
 
         recyclerView.setLayoutManager(layoutManager);
 

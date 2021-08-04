@@ -13,6 +13,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -30,9 +31,15 @@ public class ApiClient {
                 .setLenient()
                 .create();
 
-        // adding time out for request
+        // Logging Object
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        // creating custom okhttp plus adding time out for request
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient httpClient = builder
+                .addInterceptor(interceptor)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS).build();
 
