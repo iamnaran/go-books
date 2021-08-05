@@ -1,5 +1,6 @@
 package com.kec.gobooks.ui.home;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.kec.gobooks.R;
 import com.kec.gobooks.helpers.GoBookActivity;
 import com.kec.gobooks.models.Login;
+import com.kec.gobooks.ui.home.adapter.CategoryRecyclerViewAdapter;
 import com.kec.gobooks.ui.profile.ProfileActivity;
 import com.kec.gobooks.utils.CommunicationConstants;
 import com.kec.gobooks.utils.PreferenceHelper;
@@ -24,7 +26,11 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
     private TextView titleTextView;
     private CircleImageView ivProfilePicture;
 
+    // views
     private RecyclerView recyclerView;
+
+    // recyclerview adapter
+    private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +40,6 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
         initListener();
         setUserDetails();
         setUpRecyclerView();
-
     }
 
 
@@ -65,8 +70,10 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
 
         // do recyclerview setup work
         // adapter , list of data, layout manager
-
-
+        categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(categoryRecyclerViewAdapter);
 
     }
     @Override

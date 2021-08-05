@@ -77,10 +77,11 @@ public class MainActivity extends GoBookActivity {
 //        StaggeredGridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,)
 
         recyclerView.setLayoutManager(layoutManager);
-
         booksRecyclerViewAdapter = new BooksRecyclerViewAdapter(listOfBooks);
 
+
         recyclerView.setAdapter(booksRecyclerViewAdapter);
+
 
 
     }

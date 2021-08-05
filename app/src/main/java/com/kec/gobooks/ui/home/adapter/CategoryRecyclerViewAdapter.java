@@ -46,7 +46,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
 
-
     private class VHCategory extends RecyclerView.ViewHolder{
 
         private TextView categoryTitle;
