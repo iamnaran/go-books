@@ -1,5 +1,7 @@
 package com.kec.gobooks.services;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kec.gobooks.utils.PreferenceHelper;
@@ -40,6 +42,27 @@ public class ApiClient {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient httpClient = builder
                 .addInterceptor(interceptor)
+                .addInterceptor(new Interceptor() {
+                    @NotNull
+                    @Override
+                    public Response intercept(@NotNull Chain chain) throws IOException {
+
+                        Request request = chain.request();
+                        if (PreferenceHelper.isUserLoggedIn() || TextUtils.isEmpty(PreferenceHelper.getLoginResponse().getUserDetails().getToken())){
+
+                            return  chain.proceed(request);
+                        }
+
+                        request = request.newBuilder()
+                                .addHeader("Authorization", PreferenceHelper.getLoginResponse().getUserDetails().getToken())
+                                .addHeader("Accept", "Accept: application/x.school.v1+json")
+                                .build();
+
+                        Response response = chain.proceed(request);
+                        return  response;
+
+                    }
+                })
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS).build();
 

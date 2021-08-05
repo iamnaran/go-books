@@ -30,9 +30,7 @@ public class ProfileActivity extends GoBookActivity {
     private void getDataFromHomePage() {
 
         Intent intent = getIntent();
-
         fullName = intent.getStringExtra(CommunicationConstants.PROFILE_DATA);
-
         AppLog.showLog("CALLED", fullName);
 
     }

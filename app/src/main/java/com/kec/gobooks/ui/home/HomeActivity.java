@@ -13,13 +13,15 @@ import com.kec.gobooks.R;
 import com.kec.gobooks.helpers.GoBookActivity;
 import com.kec.gobooks.models.Login;
 import com.kec.gobooks.ui.home.adapter.CategoryRecyclerViewAdapter;
+import com.kec.gobooks.ui.home.controller.HomeContract;
+import com.kec.gobooks.ui.home.controller.HomeController;
 import com.kec.gobooks.ui.profile.ProfileActivity;
 import com.kec.gobooks.utils.CommunicationConstants;
 import com.kec.gobooks.utils.PreferenceHelper;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeActivity extends GoBookActivity implements View.OnClickListener {
+public class HomeActivity extends GoBookActivity implements View.OnClickListener , HomeContract {
 
 
     private final String TAG = HomeActivity.this.getClass().getSimpleName();
@@ -32,6 +34,9 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
     // recyclerview adapter
     private CategoryRecyclerViewAdapter categoryRecyclerViewAdapter;
 
+
+    private HomeController homeController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +48,10 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
     }
 
 
-
     @Override
     public void initViews() {
 
-        titleTextView =  findViewById(R.id.title);
+        titleTextView = findViewById(R.id.title);
         ivProfilePicture = findViewById(R.id.iv_profile_image);
         recyclerView = findViewById(R.id.recycler_view_home);
 
@@ -56,11 +60,14 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
     @Override
     public void initListener() {
         ivProfilePicture.setOnClickListener(this);
+        homeController = new HomeController(this);
+
+        homeController.getCategoryList();
 
     }
 
-    private void setUserDetails(){
-        if (PreferenceHelper.getLoginResponse() != null){
+    private void setUserDetails() {
+        if (PreferenceHelper.getLoginResponse() != null) {
             Login loggedInUserDetails = PreferenceHelper.getLoginResponse();
             Glide.with(HomeActivity.this).load(loggedInUserDetails.getUserDetails().getImage()).into(ivProfilePicture);
         }
@@ -71,14 +78,15 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
         // do recyclerview setup work
         // adapter , list of data, layout manager
         categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(categoryRecyclerViewAdapter);
 
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.iv_profile_image:
 
@@ -89,14 +97,24 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
     }
 
     private void doOpenProfileWork() {
-        if (PreferenceHelper.getLoginResponse() != null){
+        if (PreferenceHelper.getLoginResponse() != null) {
             Login loggedInUserDetails = PreferenceHelper.getLoginResponse();
             Intent intent = new Intent(this, ProfileActivity.class);
-            intent.putExtra(CommunicationConstants.PROFILE_DATA,loggedInUserDetails.getUserDetails().getFirstName());
+            intent.putExtra(CommunicationConstants.PROFILE_DATA, loggedInUserDetails.getUserDetails().getFirstName());
             startActivity(intent);
         }
 
     }
 
 
+    @Override
+    public void onCategoryResponseSuccess() {
+        //
+
+    }
+
+    @Override
+    public void onResponseFailure() {
+
+    }
 }
