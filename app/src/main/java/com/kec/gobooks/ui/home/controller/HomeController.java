@@ -11,6 +11,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// 1-2 clear !!
+
 public class HomeController {
 
 
@@ -41,7 +43,7 @@ public class HomeController {
                 if (response.isSuccessful()){
 
                     if (getViewContract() != null){
-                        getViewContract().onCategoryResponseSuccess();
+                        getViewContract().onCategoryResponseSuccess(response.body());
                     }
                 }
 

@@ -9,16 +9,16 @@ public class Category {
 
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private List<Data> data = null;
     @SerializedName("status")
     @Expose
     private Boolean status;
 
-    public List<Datum> getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 
@@ -30,7 +30,7 @@ public class Category {
         this.status = status;
     }
 
-    public class Datum {
+    public class Data {
 
         @SerializedName("id")
         @Expose

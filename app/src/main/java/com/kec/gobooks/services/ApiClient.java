@@ -48,9 +48,11 @@ public class ApiClient {
                     public Response intercept(@NotNull Chain chain) throws IOException {
 
                         Request request = chain.request();
-                        if (PreferenceHelper.isUserLoggedIn() || TextUtils.isEmpty(PreferenceHelper.getLoginResponse().getUserDetails().getToken())){
+                        if (PreferenceHelper.getLoginResponse() != null) {
+                            if (TextUtils.isEmpty(PreferenceHelper.getLoginResponse().getUserDetails().getToken())) {
+                                return chain.proceed(request);
+                            }
 
-                            return  chain.proceed(request);
                         }
 
                         request = request.newBuilder()
@@ -59,7 +61,7 @@ public class ApiClient {
                                 .build();
 
                         Response response = chain.proceed(request);
-                        return  response;
+                        return response;
 
                     }
                 })
