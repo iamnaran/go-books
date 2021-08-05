@@ -48,8 +48,7 @@ public class ApiClient {
                     public Response intercept(@NotNull Chain chain) throws IOException {
 
                         Request request = chain.request();
-                        if (PreferenceHelper.getLoginResponse() == null || TextUtils.isEmpty(PreferenceHelper.getLoginResponse().getUserDetails().getToken())
-                        {
+                        if (PreferenceHelper.getLoginResponse() == null || TextUtils.isEmpty(PreferenceHelper.getLoginResponse().getUserDetails().getToken())) {
 
                             return chain.proceed(request);
 
