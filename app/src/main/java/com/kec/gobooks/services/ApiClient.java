@@ -57,7 +57,7 @@ public class ApiClient {
 
                         request = request.newBuilder()
                                 .addHeader("Authorization", PreferenceHelper.getLoginResponse().getUserDetails().getToken())
-                                .addHeader("Accept", "Accept: application/x.school.v1+json")
+                                .addHeader("Accept", "Accept: application/json")
                                 .build();
 
                         Response response = chain.proceed(request);
