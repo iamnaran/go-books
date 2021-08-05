@@ -1,5 +1,7 @@
 package com.kec.gobooks.ui.login;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -22,12 +24,12 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
 
 
     // all elements from ui view
-
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
     private TextView createAccountBtn;
     private ProgressBar progressBar;
+
 
     // A controller class to handle logical operation
     private LoginController loginController;
@@ -95,9 +97,8 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
                     loginController.doLoginWork(editTextEmailValue, editTextPasswordValue);
 
                 } else {
-                    // called when all above validation is incorrect.
-                    AppToast.showToast("Valid Email Address required");
-                    emailEditText.setError("Valid Email is Required");
+
+                    showInputFieldRequiredDialog();
 
                 }
 
@@ -112,6 +113,27 @@ public class LoginActivity extends GoBookActivity implements View.OnClickListene
 
                 break;
         }
+    }
+
+    private void showInputFieldRequiredDialog() {
+
+        new AlertDialog.Builder(LoginActivity.this)
+                .setTitle("Please input Email & Password")
+                .setMessage("Are you sure you want to delete this entry?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton("Cancel", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 
 
