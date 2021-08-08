@@ -92,10 +92,17 @@ public class HomeActivity extends GoBookActivity implements View.OnClickListener
 
     private void doOpenProfileWork() {
         if (PreferenceHelper.getLoginResponse() != null) {
+            // getting logged in user data from local storage
             Login loggedInUserDetails = PreferenceHelper.getLoginResponse();
+
+            // send to another activity
+
             Intent intent = new Intent(this, ProfileActivity.class);
-            intent.putExtra(CommunicationConstants.PROFILE_DATA, loggedInUserDetails.getUserDetails().getFirstName());
+            intent.putExtra(CommunicationConstants.USER_NAME, loggedInUserDetails.getUserDetails().getFirstName());
+            intent.putExtra(CommunicationConstants.USER_EMAIL, loggedInUserDetails.getUserDetails().getEmail());
+            intent.putExtra(CommunicationConstants.USER_PROFILE_PIC, loggedInUserDetails.getUserDetails().getImage());
             startActivity(intent);
+            // animation
         }
 
     }

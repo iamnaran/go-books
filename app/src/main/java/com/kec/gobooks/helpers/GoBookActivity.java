@@ -8,4 +8,7 @@ public abstract class GoBookActivity extends AppCompatActivity {
     
     public abstract void initListener();
 
+
+
+
 }
