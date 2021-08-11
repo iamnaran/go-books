@@ -8,8 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.kec.gobooks.R;
 import com.kec.gobooks.models.Book;
+import com.kec.gobooks.ui.main.interfaces.OnItemClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +24,15 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private List<Book> bookList = new ArrayList<>();
 
+    private OnItemClick onItemClick;
+
 
     public BooksRecyclerViewAdapter(List<Book> books) {
 
         this.bookList = books;
 
     }
-    
+
 
     // Return Our View Which we want to create
 
@@ -52,7 +56,6 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
         vhBooks.bookAuthorName.setText(bookItem.getBookAuthorName());
 
 
-
     }
 
     // Size of List
@@ -70,12 +73,39 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter {
         private TextView bookName;
         private TextView bookAuthorName;
 
+        private MaterialCardView parentCardView;
+
         public VHBooks(@NonNull View itemView) {
             super(itemView);
 
             bookName = itemView.findViewById(R.id.tv_book_name);
             bookAuthorName = itemView.findViewById(R.id.tv_book_author_name);
+            parentCardView = itemView.findViewById(R.id.parent_layout);
+
+
+            parentCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Book book = bookList.get(getAdapterPosition());
+
+
+                    onItemClick.onCardItemClicked(book);
+
+
+                }
+            });
+
+
         }
     }
+
+    public void setOnItemClickLister(OnItemClick onItemClickLister){
+
+        this.onItemClick = onItemClickLister;
+
+    }
+
+
 
 }

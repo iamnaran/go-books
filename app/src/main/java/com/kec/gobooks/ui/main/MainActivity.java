@@ -11,6 +11,7 @@ import com.kec.gobooks.R;
 import com.kec.gobooks.helpers.GoBookActivity;
 import com.kec.gobooks.ui.main.adapter.BooksRecyclerViewAdapter;
 import com.kec.gobooks.models.Book;
+import com.kec.gobooks.ui.main.interfaces.OnItemClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,18 @@ public class MainActivity extends GoBookActivity {
 
 
         recyclerView.setAdapter(booksRecyclerViewAdapter);
+
+
+        // use
+
+        booksRecyclerViewAdapter.setOnItemClickLister(new OnItemClick() {
+            @Override
+            public void onCardItemClicked(Book book) {
+
+                //
+                // activity
+            }
+        });
 
 
 

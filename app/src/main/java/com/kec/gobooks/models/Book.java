@@ -1,6 +1,8 @@
 package com.kec.gobooks.models;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private String bookName;
     private float price;
