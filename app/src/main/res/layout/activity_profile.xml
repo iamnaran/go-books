@@ -25,6 +25,18 @@
         app:layout_constraintTop_toBottomOf="@+id/back_arrow" />
 
 
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic">
+
+    </Button>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,11 +8,14 @@ import com.google.gson.GsonBuilder;
 import com.kec.gobooks.models.Category;
 import com.kec.gobooks.models.Login;
 
+import java.util.List;
+
 import static com.kec.gobooks.MyApplication.getSharedPreferences;
 
 public class PreferenceHelper {
 
     // converted to String before saving
+
     public static void saveLoginResponse(Login loginResponse){
         String responseOfLogin = new GsonBuilder().create().toJson(loginResponse);
         SharedPreferences.Editor editor = getSharedPreferences().edit();
@@ -49,7 +52,6 @@ public class PreferenceHelper {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putString(AppConstants.BOOKS_CATEGORY, categoryResponse);
         editor.apply();
-
     }
 
     public Category getCategoryResponse(){
@@ -59,6 +61,16 @@ public class PreferenceHelper {
 
     }
 
+
+
+    public static void doLogoutWork(){
+        SharedPreferences.Editor editor = getSharedPreferences().edit();
+        editor.remove(AppConstants.LOGIN_RESPONSE);
+        editor.remove(AppConstants.USER_LOGGED_IN_STATUS);
+        editor.apply();
+
+
+    }
 
 
 }
